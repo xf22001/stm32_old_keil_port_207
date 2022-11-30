@@ -6,7 +6,7 @@
 #   文件名称：user.mk
 #   创 建 者：肖飞
 #   创建日期：2019年10月25日 星期五 13时04分38秒
-#   修改日期：2022年06月10日 星期五 14时21分43秒
+#   修改日期：2022年11月30日 星期三 14时20分48秒
 #   描    述：
 #
 #================================================================
@@ -35,6 +35,7 @@ USER_C_INCLUDES += -IMiddlewares/Third_Party/LwIP/system/arch
 USER_C_INCLUDES += -Iapp
 USER_C_INCLUDES += -Iapp/cJSON
 USER_C_INCLUDES += -Iapp/kean
+USER_C_INCLUDES += -Iapp/net_support
 
 C_INCLUDES += $(USER_C_INCLUDES)
 
@@ -56,6 +57,7 @@ USER_C_SOURCES += Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_pwr.c
 USER_C_SOURCES += Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_pwr_ex.c
 USER_C_SOURCES += Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc.c
 USER_C_SOURCES += Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc_ex.c
+USER_C_SOURCES += Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rng.c
 USER_C_SOURCES += Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c
 USER_C_SOURCES += Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim.c
 USER_C_SOURCES += Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim_ex.c
@@ -192,6 +194,10 @@ USER_C_SOURCES += app/kean/request_zhouhui.c
 USER_C_SOURCES += app/md5hl.c
 USER_C_SOURCES += app/mt_file.c
 USER_C_SOURCES += app/net_callback.c
+USER_C_SOURCES += app/net_support/net_sup_data.c
+USER_C_SOURCES += app/net_support/net_sup_expand.c
+USER_C_SOURCES += app/net_support/net_sup_trans.c
+USER_C_SOURCES += app/net_support/task_net_support.c
 USER_C_SOURCES += app/ocpp_1_6_common.c
 USER_C_SOURCES += app/os_utils.c
 USER_C_SOURCES += app/probe_tool.c
@@ -244,6 +250,7 @@ USER_C_SOURCES += app/task_net_nhc.c
 USER_C_SOURCES += app/task_net_ocpp1_6_Norway.c
 USER_C_SOURCES += app/task_net_ocpp1_6_TW.c
 USER_C_SOURCES += app/task_net_tld_2021.c
+USER_C_SOURCES += app/task_net_tm.c
 USER_C_SOURCES += app/task_net_ykc_2021.c
 USER_C_SOURCES += app/task_net_ys.c
 USER_C_SOURCES += app/task_net_zjxd.c
@@ -254,6 +261,7 @@ C_SOURCES += $(USER_C_SOURCES)
 USER_CFLAGS := -D_TIMEVAL_DEFINED -D__nop=__NOP
 USER_CFLAGS += -DtraceTASK_SWITCHED_IN=StartIdleMonitor -DtraceTASK_SWITCHED_OUT=EndIdleMonitor
 #USER_CFLAGS += -DLEGACY_COMPATIBLE
+USER_CFLAGS += -DLOG_NONE
 
 
 CFLAGS += $(USER_CFLAGS)
